@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{5058d8c2-9c07-4bcf-ab5d-f8cf31c21c4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Base">
+      <UniqueIdentifier>{ec006d2f-1490-4238-9125-3be6a5a3423a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Infrared">
+      <UniqueIdentifier>{1298be69-15fd-407e-8d07-534c47d9c898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Outline">
+      <UniqueIdentifier>{e5efd8d2-db57-4864-942f-749b618c05bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Proximity">
+      <UniqueIdentifier>{de539d1e-48ee-493e-aeac-a7feb70e6560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Toon">
+      <UniqueIdentifier>{e1bbaf21-cd30-42fc-acfb-12d396f9a91c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Wireframe">
+      <UniqueIdentifier>{af342f41-7fc6-4e70-9403-e5edaea6dd53}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\simple_logger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\graphics3d.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shader.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gametest3d.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\body.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\collisions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\entity.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mgl_callback.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\model.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\obj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\space.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sprite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\graphics3d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\simple_logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\body.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\collisions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mgl_callback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\obj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\space.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\shaders\fs1.glsl">
+      <Filter>Shaders\Base</Filter>
+    </None>
+    <None Include="..\shaders\vs1.glsl">
+      <Filter>Shaders\Base</Filter>
+    </None>
+    <None Include="..\shaders\infrared_frag.glsl">
+      <Filter>Shaders\Infrared</Filter>
+    </None>
+    <None Include="..\shaders\infrared_vert.glsl">
+      <Filter>Shaders\Infrared</Filter>
+    </None>
+    <None Include="..\shaders\outline_frag.glsl">
+      <Filter>Shaders\Outline</Filter>
+    </None>
+    <None Include="..\shaders\outline_vert.glsl">
+      <Filter>Shaders\Outline</Filter>
+    </None>
+    <None Include="..\shaders\proximity_frag.glsl">
+      <Filter>Shaders\Proximity</Filter>
+    </None>
+    <None Include="..\shaders\toon_frag.glsl">
+      <Filter>Shaders\Toon</Filter>
+    </None>
+    <None Include="..\shaders\toon_vert.glsl">
+      <Filter>Shaders\Toon</Filter>
+    </None>
+    <None Include="..\shaders\wireframe_frag.glsl">
+      <Filter>Shaders\Wireframe</Filter>
+    </None>
+  </ItemGroup>
+</Project>
