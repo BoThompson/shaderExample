@@ -86,8 +86,17 @@ int graphics3d_init(int sw, int sh, int fullscreen, const char* project, Uint32 
 	(*shader->reset)();
 	//Outline Shader
 	shader = BuildShaderProgram("shaders/outline_vert.glsl", "shaders/outline_frag.glsl", SHADERPROG_OUTLINE);
-	ShaderPrograms[SHADERPROG_OUTLINE].uniforms[0] = glGetUniformLocation(ShaderPrograms[SHADERPROG_OUTLINE].id, "Outline_color");
-	ShaderPrograms[SHADERPROG_OUTLINE].uniforms[1] = glGetUniformLocation(ShaderPrograms[SHADERPROG_OUTLINE].id, "Outline_unit");
+	ShaderPrograms[SHADERPROG_OUTLINE].uniforms[0] = glGetUniformLocation(ShaderPrograms[SHADERPROG_OUTLINE].id, "Outline_thickness");
+	ShaderPrograms[SHADERPROG_OUTLINE].uniforms[1] = glGetUniformLocation(ShaderPrograms[SHADERPROG_OUTLINE].id, "Outline_factor");
+	shader->setup = SetupOutlineShader;
+	shader->reset = ResetOutlineShader;
+	(*shader->reset)();
+	//Outline Shader
+	shader = BuildShaderProgram("shaders/detective_vert.glsl", "shaders/detective_frag.glsl", SHADERPROG_DETECTIVE);
+	ShaderPrograms[SHADERPROG_DETECTIVE].uniforms[0] = glGetUniformLocation(ShaderPrograms[SHADERPROG_DETECTIVE].id, "Selected");
+	shader->setup = SetupDetectiveShader;
+	shader->reset = ResetDetectiveShader;
+	(*shader->reset)();
 	//Infrared Shader
 	//shader = BuildShaderProgram("shaders/infrared_vert.glsl", "shaders/infrared_frag.glsl", SHADERPROG_INFRARED);
 	//ShaderPrograms[SHADERPROG_PROXIMITY].uniforms[0] = glGetUniformLocation(ShaderPrograms[SHADERPROG_INFRARED].id, "Infrared_color");
@@ -187,7 +196,7 @@ void graphics3d_setup_default_light()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_BLEND);
-	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 

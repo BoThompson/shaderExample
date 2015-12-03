@@ -21,14 +21,7 @@ uniform float Wireframe_thickness;
 void main()
 {
 	if(
-		any(
-			lessThanEqual(
-				Barycentric_XYZ, vec3(
-					Wireframe_thickness / 3.0
-				) 
-			) 
-		)
-	)
+		any(lessThanEqual(Barycentric_XYZ, vec3(.34 / 3.0) ) ))
 	{
 		color = vec4(Wireframe_color.rgb, 1.0);
 	}

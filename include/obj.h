@@ -54,10 +54,11 @@ typedef struct
     float *texel_array;
     float *normal_array;
     ObjTriangle *triangle_array;
-    
+    Uint32 flags;
     Uint8 used;             /**<refcount*/
 }Obj;
 
+#define OBJFLAG_SELECTED	1
 /**
  * @brief initialize the object subsystem
  */

@@ -39,6 +39,9 @@
     <ClInclude Include="..\include\space.h" />
     <ClInclude Include="..\include\sprite.h" />
     <ClInclude Include="..\include\vector.h" />
+    <None Include="..\shaders\detective_frag.glsl" />
+    <None Include="..\shaders\detective_vert.glsl" />
+    <None Include="..\shaders\echo_frag.glsl" />
     <None Include="..\shaders\outline_frag.glsl" />
     <None Include="..\shaders\outline_vert.glsl" />
   </ItemGroup>

@@ -40,7 +40,7 @@
     Vec3D cameraRotation = {90,0,0};
 
 GameEngine game;
-
+float echo_center;
 void set_camera(Vec3D position, Vec3D rotation);
 
 void touch_callback(void *data, void *context)
@@ -102,6 +102,7 @@ int main(int argc, char *argv[])
     bgtext = LoadSprite("models/mountain_text.png",1024,1024);
     
     cube1 = newCube(vec3d(0,0,0),"Cubert");
+	cube1->objModel->flags = OBJFLAG_SELECTED;
     cube2 = newCube(vec3d(10,0,0),"Hobbes");
     
     cube2->body.velocity.x = -0.1f;
@@ -130,7 +131,7 @@ int main(int argc, char *argv[])
 				{
 					REMOVE_FLAG(game.impulse_flags, IMPFLAG_SHADER_MOD);
 					slog("Shader modifier mode removed\n");
-				}else if(e.key.keysym.sym == SDLK_LSHIFT)
+				}else if(e.key.keysym.sym == SDLK_LCTRL)
 				{
 					REMOVE_FLAG(game.impulse_flags, IMPFLAG_GRAPHICS_MOD);
 					slog("Graphics modifier mode removed\n");
@@ -195,6 +196,26 @@ int main(int argc, char *argv[])
 						game.shader = SHADERPROG_WIREFRAME;
 						if(last_shader != game.shader){
 							slog("Wireframe Shader activated\n");
+							last_shader = game.shader;
+							RunShader();
+						}
+					
+					}
+					else if(e.key.keysym.sym == SDLK_4)
+					{
+						game.shader = SHADERPROG_DETECTIVE;
+						if(last_shader != game.shader){
+							slog("Detective Shader activated\n");
+							last_shader = game.shader;
+							RunShader();
+						}
+					
+					}
+					else if(e.key.keysym.sym == SDLK_5)
+					{
+						game.shader = SHADERPROG_ECHO;
+						if(last_shader != game.shader){
+							slog("Echo Shader activated\n");
 							last_shader = game.shader;
 							RunShader();
 						}
@@ -306,6 +327,13 @@ int main(int argc, char *argv[])
 								ShaderPrograms[game.shader].values[3] = 1.0f;
 							shader_update = 1;
 							break;
+						case SHADERPROG_ECHO:
+							//Make it wider
+							ShaderPrograms[game.shader].values[3]+= 1.0f;
+							if(ShaderPrograms[game.shader].values[3] > 100.0f)
+								ShaderPrograms[game.shader].values[3] = 100.0f;
+							shader_update = 1;
+							break;
 						default: break;
 						}
 					}else if(e.key.keysym.sym == SDLK_KP_MINUS)
@@ -320,10 +348,17 @@ int main(int argc, char *argv[])
 							shader_update = 1;
 							break;
 						case SHADERPROG_WIREFRAME:
-							//Make it thicker
+							//Make it thinner
 							ShaderPrograms[game.shader].values[3]-= 0.01f;
 							if(ShaderPrograms[game.shader].values[3] < 0.0f)
 								ShaderPrograms[game.shader].values[3] = 0.0f;
+							shader_update = 1;
+							break;
+						case SHADERPROG_ECHO:
+							//Make it narrower
+							ShaderPrograms[game.shader].values[3]-= 1.0f;
+							if(ShaderPrograms[game.shader].values[3] < 1.0f)
+								ShaderPrograms[game.shader].values[3] = 1.0f;
 							shader_update = 1;
 							break;
 						default: break;

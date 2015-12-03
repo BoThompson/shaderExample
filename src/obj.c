@@ -425,7 +425,7 @@ void obj_draw(
 	float texel_array[2*MAX_VERTICES];
 	float bary_array[3*MAX_VERTICES];
 	mat4 scale_mat, rotation_mat, translation_mat;
-	GLuint shader_num;
+	int shader_num;
 	int n = 0, v = 0, t = 0, b = 0;
 	Uint32 i,j;
     if (obj == NULL)
@@ -489,7 +489,7 @@ void obj_draw(
 	glBindBuffer(GL_ARRAY_BUFFER, game.UVbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * t, texel_array, GL_STATIC_DRAW);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void *)0);
-	glBindTexture(GL_TEXTURE_2D, texture->texture);
+	
 	
 	//Setup the data for the normals
 	glEnableVertexAttribArray(2);
@@ -502,31 +502,32 @@ void obj_draw(
 	glBindBuffer(GL_ARRAY_BUFFER, game.barybuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * b, bary_array, GL_STATIC_DRAW);
 	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
-
-	/*
+	glBindTexture(GL_TEXTURE_2D, texture->texture);
+	
 	//If we're outlining, draw the mesh first
 	if(IS_SET(game.graphics_flags, GFXFLAG_OUTLINE))
 	{
 		shader_num = game.shader;
-		game.shader = SHADERPROG_TOON;
+		game.shader = SHADERPROG_OUTLINE;
 		RunShader();
+		glDepthMask(GL_FALSE);
 		glUniformMatrix4fv(ShaderPrograms[game.shader].MVP_id, 1, GL_FALSE, &MVP[0][0]);
 		glUniformMatrix4fv(ShaderPrograms[game.shader].Model_id, 1, GL_FALSE, &Model[0][0]);
 		glUniformMatrix4fv(ShaderPrograms[game.shader].View_id, 1, GL_FALSE, &game.View[0][0]);
 		glUniform3fv(ShaderPrograms[game.shader].light_position_id,1, &game.light_position[0]);
-		//Set the outline color
-		glUniform3fv(ShaderPrograms[game.shader].uniforms[OUTLNSHADER_COLOR], 3, 
-					 ShaderPrograms[game.shader].values);
-		//Set the outline thickness
-		glUniform1f(ShaderPrograms[game.shader].uniforms[OUTLNSHADER_DISTANCE], 
-					 ShaderPrograms[game.shader].values[3]);
+		(*ShaderPrograms[game.shader].setup)();
 		glDrawArrays(GL_TRIANGLES, 0, obj->num_tris * 3);	
 		game.shader = shader_num;
+		glDepthMask(GL_TRUE);
 		RunShader();
 	}
-	*/
+	if(game.shader == SHADERPROG_DETECTIVE)
+			glUniform1f(ShaderPrograms[game.shader].uniforms[0], (GLfloat)!IS_SET(obj->flags, OBJFLAG_SELECTED));
 	//Draw the object
 	glDrawArrays(GL_TRIANGLES, 0, obj->num_tris * 3 );
+
+	
+
 	//If we're wireframing, draw the mesh afterwards
 	/*if(IS_SET(game.graphics_flags, GFXFLAG_WIREFRAME))
 	{

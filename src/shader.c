@@ -27,6 +27,26 @@ void SetupWireframeShader()
 				ShaderPrograms[SHADERPROG_WIREFRAME].values[3]);
 }
 
+void SetupOutlineShader()
+{
+	glUniform1f(ShaderPrograms[SHADERPROG_PROXIMITY].uniforms[OUTLNSHADER_THICKNESS],
+				 ShaderPrograms[SHADERPROG_PROXIMITY].values[0]);
+	glUniform1f(ShaderPrograms[SHADERPROG_PROXIMITY].uniforms[OUTLNSHADER_FACTOR],
+				ShaderPrograms[SHADERPROG_PROXIMITY].values[1]);
+}
+
+void SetupDetectiveShader()
+{
+}
+
+
+void SetupEchoShader()
+{
+	glUniform3fv(ShaderPrograms[SHADERPROG_PROXIMITY].uniforms[ECHOSHADER_COLOR], 1,
+				 ShaderPrograms[SHADERPROG_PROXIMITY].values);
+	glUniform1f(ShaderPrograms[SHADERPROG_PROXIMITY].uniforms[ECHOSHADER_BAND],
+				ShaderPrograms[SHADERPROG_PROXIMITY].values[3]);
+}
 //Reset Shader Function Callbacks
 void ResetProximityShader()
 {
@@ -46,7 +66,26 @@ void ResetWireframeShader()
 	ShaderPrograms[SHADERPROG_WIREFRAME].values[3] = 0.05f;
 }
 
+void ResetOutlineShader()
+{
+	
+	ShaderPrograms[SHADERPROG_WIREFRAME].values[0] = 0.1f; //10% thicker than normal
+	ShaderPrograms[SHADERPROG_WIREFRAME].values[1] = 0.0f; //Does not scale based upon distance
+}
 
+
+void ResetDetectiveShader()
+{
+}
+
+
+void ResetEchoShader()
+{
+	ShaderPrograms[SHADERPROG_ECHO].values[0] = 0.0f;
+	ShaderPrograms[SHADERPROG_ECHO].values[1] = 1.0f;
+	ShaderPrograms[SHADERPROG_ECHO].values[2] = 0.0f;
+	ShaderPrograms[SHADERPROG_ECHO].values[3] = 1.0f;
+}
 ShaderProgram *BuildShaderProgram(const char *vsPath, const char *fsPath)
 {
 	return BuildShaderProgram(vsPath, fsPath, shader_count++);

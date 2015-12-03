@@ -18,13 +18,13 @@ uniform mat4 MVP;
 uniform mat4 V;
 uniform mat4 M;
 uniform vec3 LightPosition_worldspace;
+uniform float Outline_factor;
+uniform float Outline_thickness;
 
 void main(){
 
 	//Output the coordinate for barycentric coordinates
 	Barycentric_XYZ = Barycentric_coordinate;
-	// Output position of the vertex, in clip space : MVP * position
-	gl_Position =  MVP * vec4(vertexPosition_modelspace,1);
 	
 	// Position of the vertex, in worldspace : M * position
 	Position_worldspace = (M * vec4(vertexPosition_modelspace,1)).xyz;
@@ -43,6 +43,12 @@ void main(){
 	
 	// UV of the vertex. No special space for this one.
 	UV = vertexUV;
+
+	//Calculate the Outline_scale based upon Outline_thickness, distance and Outline_factor
+	float outline_scale = /*Outline_thickness */ (2.0 /*+  length(EyeDirection_cameraspace) * Outline_factor*/); 
+	// Output position of the vertex, in clip space : MVP * position
+	gl_Position =  MVP * vec4(vertexPosition_modelspace * outline_scale,1);
+
 }
 
 

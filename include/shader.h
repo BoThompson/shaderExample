@@ -51,9 +51,10 @@ void RunShader();
 #define SHADERPROG_WIREFRAME	1
 #define SHADERPROG_PROXIMITY	2
 #define SHADERPROG_TOON			3
-#define SHADERPROG_PULSE		4
+#define SHADERPROG_ECHO 		4
 #define SHADERPROG_OUTLINE		5
 #define SHADERPROG_INFRARED		6
+#define SHADERPROG_DETECTIVE	7
 
 
 //Uniforms / Values
@@ -70,11 +71,14 @@ void ResetProximityShader();
 /*********************************************************************
  * Outline shader:
  *
- * 0-2 Outline color
- *   3 Outline thickness
+ *   0 Outline distance
+ *   1 Outline factor
  *********************************************************************/
-#define OUTLNSHADER_COLOR		0
-#define OUTLNSHADER_DISTANCE	1
+#define OUTLNSHADER_THICKNESS	0
+#define OUTLNSHADER_FACTOR		1
+void SetupOutlineShader();
+void ResetOutlineShader();
+
 
 /*********************************************************************
  * Wireframe shader:
@@ -86,6 +90,27 @@ void ResetProximityShader();
 #define WIRESHADER_DISTANCE		1
 void SetupWireframeShader();
 void ResetWireframeShader();
+
+/*********************************************************************
+ * Detective shader:
+ *
+ *********************************************************************/
+void SetupDetectiveShader();
+void ResetDetectiveShader();
+
+
+/*********************************************************************
+ * Echolocation shader:
+ *
+ * 0-2 Echolocation color
+ *   3 Echolocation Band
+ *********************************************************************/
+#define ECHOSHADER_COLOR		0
+#define ECHOSHADER_BAND			1
+void SetupEchoframeShader();
+void ResetEchoframeShader();
+
+
 
 
 extern ShaderProgram ShaderPrograms[MAX_SHADERS];

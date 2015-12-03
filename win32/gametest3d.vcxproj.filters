@@ -34,6 +34,12 @@
     <Filter Include="Shaders\Wireframe">
       <UniqueIdentifier>{af342f41-7fc6-4e70-9403-e5edaea6dd53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders\Detective">
+      <UniqueIdentifier>{c3a1250a-fcee-4ae6-8ca9-1a6880110d66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Echolocation">
+      <UniqueIdentifier>{7b82c5ec-4c80-4881-9955-a0595a5dbf23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\simple_logger.c">
@@ -147,6 +153,15 @@
     </None>
     <None Include="..\shaders\wireframe_frag.glsl">
       <Filter>Shaders\Wireframe</Filter>
+    </None>
+    <None Include="..\shaders\detective_frag.glsl">
+      <Filter>Shaders\Detective</Filter>
+    </None>
+    <None Include="..\shaders\detective_vert.glsl">
+      <Filter>Shaders\Detective</Filter>
+    </None>
+    <None Include="..\shaders\echo_frag.glsl">
+      <Filter>Shaders\Echolocation</Filter>
     </None>
   </ItemGroup>
 </Project>
